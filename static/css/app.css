@@ -1,0 +1,13 @@
+
+.page-container {
+    padding-top: 40px;
+}
+
+.markdown-editor {
+    width: 98%;
+}
+
+.markdown-view {
+    width: 98%;
+    overflow: auto;
+}

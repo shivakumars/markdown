@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="MeraMarkdown">
+<head>
+	<title>Markdown</title>
+	<link rel="stylesheet" href="static/css/bootstrap.css">
+	<link rel="stylesheet" href="static/css/codemirror.css">
+	<link rel="stylesheet" href="static/css/app.css">
+
+	<script script="text/javascript" src="static/js/jquery.min.js"></script>
+	<script script="text/javascript" src="static/js/showdown.js"></script>
+	<script script="text/javascript" src="static/js/codemirror.js"></script>
+	<script script="text/javascript" src="static/js/angular.min.js"></script>
+	<script script="text/javascript" src="static/js/bootstrap.js"></script>
+	<script script="text/javascript" src="static/js/ui-codemirror.js"></script>
+	<script script="text/javascript" src="static/js/markdown.js"></script>
+	<script script="text/javascript" src="static/js/xml.js"></script>
+	<script script="text/javascript" src="static/js/gmf.js"></script>
+	<script script="text/javascript" src="static/js/app.js"></script>
+
+	<style type="text/css">
+			.CodeMirror {
+			  /* Set height, width, borders, and global font properties here */
+			  font-family: monospace;
+			  height: 100%;
+			  width: 98%;
+			}
+	</style>
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">   
+        <div class="navbar-inner">
+            <div class="row-fluid">
+                 <span class="span1 offset1"><a class="brand" href="/">Markdown</a></span>
+            </div>
+        </div>
+    </div>
+
+	<div class="page-container" ng-controller="Markdown">
+		<div class="row-fluid editor-wrapper">
+			<div class="span6 editor-left-container">
+				<textarea ui-codemirror="{mode:'markdown', lineNumbers: true, theme:'default'}" ui-refresh="codeMirrorRefresh" class="markdown-editor" ng-model="markdownEditor"></textarea>
+			</div>
+			<div class="span6 pull-right markdown-view">
+				<div ng-bind-html-unsafe="html()"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		
+	</div>
+
+	<script type="text/javascript">
+
+		angular.module('MeraMarkdown', ['ui.codemirror']).controller('Markdown', ['$scope', function ($scope) {
+
+			$scope.markdownEditor = "#Markdown";
+
+			var converter = new Showdown.converter();
+
+			$scope.html = function() {
+				return converter.makeHtml($scope.markdownEditor)
+			}
+  		}]);
+
+
+		function handleResize() {
+				var h = $(window).height();
+				var editorHeight = (h - 50);
+		        $('body').css({'height':h+'px'});
+		        $('.editor-left-container').css({'height':editorHeight+'px'});	
+		        $('.markdown-editor').css({'height':editorHeight+'px'});
+		        $('.CodeMirror').css({'height':editorHeight+'px'});
+		        $('.markdown-view').css({'height':editorHeight+'px'});
+		}
+
+		$(function(){
+
+		        handleResize();
+
+		        $(window).resize(function(){
+		        	handleResize();
+			    });
+		});
+
+	</script>
+
+</body>
+</html>
