@@ -9,6 +9,6 @@ class MDDropboxClient
         		#$('#user-name', @$root).text userInfo.name
 
 $ ->
-  client = new Dropbox.Client key: 'ol56zaikdq4kxjx'
+  client = new Dropbox.Client key: '36vile8m8g7fpv4'
   window.app = new MDDropboxClient client
  
