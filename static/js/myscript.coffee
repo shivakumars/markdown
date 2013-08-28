@@ -10,5 +10,5 @@ constructor: (@dbClient) ->
 
 $ ->
   client = new Dropbox.Client key: 'ol56zaikdq4kxjx'
-  new MDDropboxClient client
+  window.app = new MDDropboxClient client
  
