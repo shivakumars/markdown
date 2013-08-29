@@ -16,9 +16,24 @@
 	<script script="text/javascript" src="static/js/xml.js"></script>
 	<script script="text/javascript" src="static/js/gmf.js"></script>
 	<script script="text/javascript" src="static/js/app.js"></script>
+
+	<!--
 	<script script="text/javascript" src="static/js/dropbox-min.js"></script>
 	<script type="text/javascript" src="static/js/coffee-script.js"></script>
-    <script type="text/coffeescript" src="static/js/myscript.coffee"></script>
+    <script type="text/coffeescript" src="static/js/myscript.coffee"></script>-->
+
+    <script src="static/js/oauth.js"></script>
+    <script type="text/javascript">
+    	OAuth.initialize('XTfzZTWABX5MS-lTaDhWOQShjk0');
+    	//Using popup (option 1)
+		OAuth.redirect('dropbox', 'http://localhost');
+
+		OAuth.callback('dropbox', function(err, result) {
+  			//handle error with err
+  			//use result.access_token in your API request
+  			alert(result.access_token);
+		});
+    </script>
 
 	<style type="text/css">
 			.CodeMirror {
